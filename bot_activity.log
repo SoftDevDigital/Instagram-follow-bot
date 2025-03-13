@@ -1,0 +1,128 @@
+2025-03-13 00:09:16,780 - ====== WebDriver manager ======
+2025-03-13 00:09:17,272 - Get LATEST chromedriver version for google-chrome
+2025-03-13 00:09:17,349 - Get LATEST chromedriver version for google-chrome
+2025-03-13 00:09:17,420 - Get LATEST chromedriver version for google-chrome
+2025-03-13 00:09:17,561 - WebDriver version 134.0.6998.88 selected
+2025-03-13 00:09:17,562 - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.88/win32/chromedriver-win32.zip
+2025-03-13 00:09:17,562 - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.88/win32/chromedriver-win32.zip
+2025-03-13 00:09:17,672 - Driver downloading response is 200
+2025-03-13 00:09:18,114 - Get LATEST chromedriver version for google-chrome
+2025-03-13 00:09:18,254 - Driver has been saved in cache [C:\Users\alexi\.wdm\drivers\chromedriver\win64\134.0.6998.88]
+2025-03-13 00:09:19,554 - Abriendo Instagram...
+2025-03-13 00:09:36,235 - Login exitoso!
+2025-03-13 00:09:36,235 - Navegando al perfil de alexander.ac026...
+2025-03-13 00:09:41,959 - Abriendo la lista de seguidores...
+2025-03-13 00:09:57,136 - Error al hacer scroll: Message: 
+Stacktrace:
+	GetHandleVerifier [0x009AB5A3+24387]
+	(No symbol) [0x00935904]
+	(No symbol) [0x00810753]
+	(No symbol) [0x00858BA9]
+	(No symbol) [0x00858EFB]
+	(No symbol) [0x008A19C2]
+	(No symbol) [0x0087D894]
+	(No symbol) [0x0089F138]
+	(No symbol) [0x0087D646]
+	(No symbol) [0x0084C59F]
+	(No symbol) [0x0084D8E4]
+	GetHandleVerifier [0x00CAD883+3179043]
+	GetHandleVerifier [0x00CC6CF9+3282585]
+	GetHandleVerifier [0x00CC167C+3260444]
+	GetHandleVerifier [0x00A44330+650448]
+	(No symbol) [0x0093ED0D]
+	(No symbol) [0x0093BAF8]
+	(No symbol) [0x0093BC99]
+	(No symbol) [0x0092E530]
+	BaseThreadInitThunk [0x766B5D49+25]
+	RtlInitializeExceptionChain [0x77B0CE3B+107]
+	RtlGetAppContainerNamedObjectPath [0x77B0CDC1+561]
+
+2025-03-13 00:09:57,160 - Seguido 1 usuarios: 
+2025-03-13 00:10:01,237 - Seguido 2 usuarios: 
+2025-03-13 00:10:05,448 - Seguido 3 usuarios: 
+2025-03-13 00:10:09,467 - Seguido 4 usuarios: 
+2025-03-13 00:10:13,289 - Seguido 5 usuarios: 
+2025-03-13 00:15:28,787 - Error al hacer scroll: Message: 
+Stacktrace:
+	GetHandleVerifier [0x009AB5A3+24387]
+	(No symbol) [0x00935904]
+	(No symbol) [0x00810753]
+	(No symbol) [0x00858BA9]
+	(No symbol) [0x00858EFB]
+	(No symbol) [0x008A19C2]
+	(No symbol) [0x0087D894]
+	(No symbol) [0x0089F138]
+	(No symbol) [0x0087D646]
+	(No symbol) [0x0084C59F]
+	(No symbol) [0x0084D8E4]
+	GetHandleVerifier [0x00CAD883+3179043]
+	GetHandleVerifier [0x00CC6CF9+3282585]
+	GetHandleVerifier [0x00CC167C+3260444]
+	GetHandleVerifier [0x00A44330+650448]
+	(No symbol) [0x0093ED0D]
+	(No symbol) [0x0093BAF8]
+	(No symbol) [0x0093BC99]
+	(No symbol) [0x0092E530]
+	BaseThreadInitThunk [0x766B5D49+25]
+	RtlInitializeExceptionChain [0x77B0CE3B+107]
+	RtlGetAppContainerNamedObjectPath [0x77B0CDC1+561]
+
+2025-03-13 00:15:28,814 - Seguido 6 usuarios: 
+2025-03-13 00:15:33,143 - Seguido 7 usuarios: 
+2025-03-13 00:15:36,745 - Seguido 8 usuarios: 
+2025-03-13 00:15:41,377 - Seguido 9 usuarios: 
+2025-03-13 00:15:44,869 - Seguido 10 usuarios: 
+2025-03-13 00:21:00,667 - Error al hacer scroll: Message: 
+Stacktrace:
+	GetHandleVerifier [0x009AB5A3+24387]
+	(No symbol) [0x00935904]
+	(No symbol) [0x00810753]
+	(No symbol) [0x00858BA9]
+	(No symbol) [0x00858EFB]
+	(No symbol) [0x008A19C2]
+	(No symbol) [0x0087D894]
+	(No symbol) [0x0089F138]
+	(No symbol) [0x0087D646]
+	(No symbol) [0x0084C59F]
+	(No symbol) [0x0084D8E4]
+	GetHandleVerifier [0x00CAD883+3179043]
+	GetHandleVerifier [0x00CC6CF9+3282585]
+	GetHandleVerifier [0x00CC167C+3260444]
+	GetHandleVerifier [0x00A44330+650448]
+	(No symbol) [0x0093ED0D]
+	(No symbol) [0x0093BAF8]
+	(No symbol) [0x0093BC99]
+	(No symbol) [0x0092E530]
+	BaseThreadInitThunk [0x766B5D49+25]
+	RtlInitializeExceptionChain [0x77B0CE3B+107]
+	RtlGetAppContainerNamedObjectPath [0x77B0CDC1+561]
+
+2025-03-13 00:21:00,700 - Seguido 11 usuarios: 
+2025-03-13 00:27:06,397 - Error al hacer scroll: Message: 
+Stacktrace:
+	GetHandleVerifier [0x009AB5A3+24387]
+	(No symbol) [0x00935904]
+	(No symbol) [0x00810753]
+	(No symbol) [0x00858BA9]
+	(No symbol) [0x00858EFB]
+	(No symbol) [0x008A19C2]
+	(No symbol) [0x0087D894]
+	(No symbol) [0x0089F138]
+	(No symbol) [0x0087D646]
+	(No symbol) [0x0084C59F]
+	(No symbol) [0x0084D8E4]
+	GetHandleVerifier [0x00CAD883+3179043]
+	GetHandleVerifier [0x00CC6CF9+3282585]
+	GetHandleVerifier [0x00CC167C+3260444]
+	GetHandleVerifier [0x00A44330+650448]
+	(No symbol) [0x0093ED0D]
+	(No symbol) [0x0093BAF8]
+	(No symbol) [0x0093BC99]
+	(No symbol) [0x0092E530]
+	BaseThreadInitThunk [0x766B5D49+25]
+	RtlInitializeExceptionChain [0x77B0CE3B+107]
+	RtlGetAppContainerNamedObjectPath [0x77B0CDC1+561]
+
+2025-03-13 00:27:16,524 - No se encontraron más usuarios para seguir.
+2025-03-13 00:27:16,539 - Reporte generado en report.txt
+2025-03-13 00:27:16,539 - Cerrando el navegador...
