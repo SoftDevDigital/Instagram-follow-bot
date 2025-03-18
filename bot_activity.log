@@ -126,3 +126,547 @@ Stacktrace:
 2025-03-13 00:27:16,524 - No se encontraron más usuarios para seguir.
 2025-03-13 00:27:16,539 - Reporte generado en report.txt
 2025-03-13 00:27:16,539 - Cerrando el navegador...
+2025-03-13 11:44:39,623 - ====== WebDriver manager ======
+2025-03-13 11:44:41,555 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:44:41,687 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:44:41,744 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:44:42,150 - WebDriver version 134.0.6998.88 selected
+2025-03-13 11:44:42,156 - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.88/win32/chromedriver-win32.zip
+2025-03-13 11:44:42,156 - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.88/win32/chromedriver-win32.zip
+2025-03-13 11:44:42,415 - Driver downloading response is 200
+2025-03-13 11:44:45,325 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:44:45,745 - Driver has been saved in cache [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88]
+2025-03-13 11:44:48,382 - Abriendo Instagram...
+2025-03-13 11:45:07,827 - Login exitoso!
+2025-03-13 11:45:07,834 - Reporte generado en report.txt
+2025-03-13 11:45:07,835 - Cerrando el navegador...
+2025-03-13 11:46:48,028 - ====== WebDriver manager ======
+2025-03-13 11:46:51,073 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:46:51,302 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:46:51,380 - Driver [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-13 11:46:56,211 - Abriendo Instagram...
+2025-03-13 11:47:28,939 - Login exitoso!
+2025-03-13 11:47:28,956 - Reporte generado en report.txt
+2025-03-13 11:47:28,956 - Cerrando el navegador...
+2025-03-18 18:17:15,387 - ====== WebDriver manager ======
+2025-03-18 18:17:17,506 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:17:17,684 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:17:17,782 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:17:17,952 - WebDriver version 134.0.6998.88 selected
+2025-03-18 18:17:17,957 - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.88/win32/chromedriver-win32.zip
+2025-03-18 18:17:17,957 - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/134.0.6998.88/win32/chromedriver-win32.zip
+2025-03-18 18:17:18,085 - Driver downloading response is 200
+2025-03-18 18:17:20,097 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:17:20,446 - Driver has been saved in cache [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88]
+2025-03-18 18:17:23,038 - Abriendo Instagram...
+2025-03-18 18:17:43,617 - Login exitoso!
+2025-03-18 18:17:43,617 - Navegando a tu perfil...
+2025-03-18 18:18:08,445 - ====== WebDriver manager ======
+2025-03-18 18:18:12,775 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:18:12,927 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:18:13,015 - Driver [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-18 18:18:14,825 - Abriendo Instagram...
+2025-03-18 18:18:34,975 - Login exitoso!
+2025-03-18 18:18:35,047 - Navegando a tu perfil...
+2025-03-18 18:21:27,952 - ====== WebDriver manager ======
+2025-03-18 18:21:29,496 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:21:29,588 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:21:29,667 - Driver [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-18 18:21:31,298 - Abriendo Instagram...
+2025-03-18 18:21:51,180 - Login exitoso!
+2025-03-18 18:21:51,180 - Navegando a tu perfil...
+2025-03-18 18:21:58,400 - Obteniendo lista de seguidores...
+2025-03-18 18:21:58,400 - Abriendo la lista de 'Seguidores'...
+2025-03-18 18:22:08,695 - Error al abrir 'Seguidores': Message: 
+Stacktrace:
+	GetHandleVerifier [0x00E6B5A3+24387]
+	(No symbol) [0x00DF5904]
+	(No symbol) [0x00CD0753]
+	(No symbol) [0x00D18BA9]
+	(No symbol) [0x00D18EFB]
+	(No symbol) [0x00D619C2]
+	(No symbol) [0x00D3D894]
+	(No symbol) [0x00D5F138]
+	(No symbol) [0x00D3D646]
+	(No symbol) [0x00D0C59F]
+	(No symbol) [0x00D0D8E4]
+	GetHandleVerifier [0x0116D883+3179043]
+	GetHandleVerifier [0x01186CF9+3282585]
+	GetHandleVerifier [0x0118167C+3260444]
+	GetHandleVerifier [0x00F04330+650448]
+	(No symbol) [0x00DFED0D]
+	(No symbol) [0x00DFBAF8]
+	(No symbol) [0x00DFBC99]
+	(No symbol) [0x00DEE530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+
+2025-03-18 18:22:22,750 - ====== WebDriver manager ======
+2025-03-18 18:22:24,629 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:22:24,731 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:22:24,788 - Driver [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-18 18:22:26,606 - Abriendo Instagram...
+2025-03-18 18:22:45,749 - Login exitoso!
+2025-03-18 18:22:45,749 - Navegando a tu perfil...
+2025-03-18 18:22:52,234 - Obteniendo lista de seguidores...
+2025-03-18 18:22:52,234 - Abriendo la lista de 'Seguidores'...
+2025-03-18 18:22:53,277 - Error al abrir 'Seguidores': 'NoneType' object has no attribute 'is_displayed'
+2025-03-18 18:22:53,278 - Error al hacer scroll: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x0031B5A3+24387]
+	(No symbol) [0x002A5904]
+	(No symbol) [0x00180753]
+	(No symbol) [0x0015F83E]
+	(No symbol) [0x001F454E]
+	(No symbol) [0x0020EA19]
+	(No symbol) [0x001ED646]
+	(No symbol) [0x001BC59F]
+	(No symbol) [0x001BD8E4]
+	GetHandleVerifier [0x0061D883+3179043]
+	GetHandleVerifier [0x00636CF9+3282585]
+	GetHandleVerifier [0x0063167C+3260444]
+	GetHandleVerifier [0x003B4330+650448]
+	(No symbol) [0x002AED0D]
+	(No symbol) [0x002ABAF8]
+	(No symbol) [0x002ABC99]
+	(No symbol) [0x0029E530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+	(No symbol) [0x00000000]
+
+2025-03-18 18:22:53,279 - Error al obtener usuarios: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x0031B5A3+24387]
+	(No symbol) [0x002A5904]
+	(No symbol) [0x00180753]
+	(No symbol) [0x0015F83E]
+	(No symbol) [0x001F454E]
+	(No symbol) [0x0020EA19]
+	(No symbol) [0x001ED646]
+	(No symbol) [0x001BC59F]
+	(No symbol) [0x001BD8E4]
+	GetHandleVerifier [0x0061D883+3179043]
+	GetHandleVerifier [0x00636CF9+3282585]
+	GetHandleVerifier [0x0063167C+3260444]
+	GetHandleVerifier [0x003B4330+650448]
+	(No symbol) [0x002AED0D]
+	(No symbol) [0x002ABAF8]
+	(No symbol) [0x002ABC99]
+	(No symbol) [0x0029E530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+	(No symbol) [0x00000000]
+
+2025-03-18 18:22:53,280 - Obteniendo lista de seguidos...
+2025-03-18 18:22:53,280 - Abriendo la lista de 'Siguiendo'...
+2025-03-18 18:22:53,282 - Error al abrir 'Siguiendo': Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x0031B5A3+24387]
+	(No symbol) [0x002A5904]
+	(No symbol) [0x00180753]
+	(No symbol) [0x0015F83E]
+	(No symbol) [0x001F454E]
+	(No symbol) [0x0020EA19]
+	(No symbol) [0x001ED646]
+	(No symbol) [0x001BC59F]
+	(No symbol) [0x001BD8E4]
+	GetHandleVerifier [0x0061D883+3179043]
+	GetHandleVerifier [0x00636CF9+3282585]
+	GetHandleVerifier [0x0063167C+3260444]
+	GetHandleVerifier [0x003B4330+650448]
+	(No symbol) [0x002AED0D]
+	(No symbol) [0x002ABAF8]
+	(No symbol) [0x002ABC99]
+	(No symbol) [0x0029E530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+	(No symbol) [0x00000000]
+
+2025-03-18 18:22:53,285 - Error al hacer scroll: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x0031B5A3+24387]
+	(No symbol) [0x002A5904]
+	(No symbol) [0x00180753]
+	(No symbol) [0x0015F83E]
+	(No symbol) [0x001F454E]
+	(No symbol) [0x0020EA19]
+	(No symbol) [0x001ED646]
+	(No symbol) [0x001BC59F]
+	(No symbol) [0x001BD8E4]
+	GetHandleVerifier [0x0061D883+3179043]
+	GetHandleVerifier [0x00636CF9+3282585]
+	GetHandleVerifier [0x0063167C+3260444]
+	GetHandleVerifier [0x003B4330+650448]
+	(No symbol) [0x002AED0D]
+	(No symbol) [0x002ABAF8]
+	(No symbol) [0x002ABC99]
+	(No symbol) [0x0029E530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+	(No symbol) [0x00000000]
+
+2025-03-18 18:22:53,287 - Error al obtener usuarios: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x0031B5A3+24387]
+	(No symbol) [0x002A5904]
+	(No symbol) [0x00180753]
+	(No symbol) [0x0015F83E]
+	(No symbol) [0x001F454E]
+	(No symbol) [0x0020EA19]
+	(No symbol) [0x001ED646]
+	(No symbol) [0x001BC59F]
+	(No symbol) [0x001BD8E4]
+	GetHandleVerifier [0x0061D883+3179043]
+	GetHandleVerifier [0x00636CF9+3282585]
+	GetHandleVerifier [0x0063167C+3260444]
+	GetHandleVerifier [0x003B4330+650448]
+	(No symbol) [0x002AED0D]
+	(No symbol) [0x002ABAF8]
+	(No symbol) [0x002ABC99]
+	(No symbol) [0x0029E530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+	(No symbol) [0x00000000]
+
+2025-03-18 18:22:53,288 - Usuarios que no te siguen: 0
+2025-03-18 18:22:53,288 - No hay usuarios para dejar de seguir.
+2025-03-18 18:22:53,288 - Proceso completado. Cerrando navegador...
+2025-03-18 18:23:07,397 - ====== WebDriver manager ======
+2025-03-18 18:23:09,131 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:23:09,213 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:23:09,294 - Driver [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-18 18:23:13,398 - Abriendo Instagram...
+2025-03-18 18:23:32,644 - Login exitoso!
+2025-03-18 18:23:32,645 - Navegando a tu perfil...
+2025-03-18 18:23:39,084 - Obteniendo lista de seguidores...
+2025-03-18 18:23:39,085 - Abriendo la lista de 'Seguidores'...
+2025-03-18 18:23:51,735 - ====== WebDriver manager ======
+2025-03-18 18:23:54,903 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:23:55,021 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:23:55,091 - Driver [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-18 18:23:56,718 - Abriendo Instagram...
+2025-03-18 18:24:16,969 - Login exitoso!
+2025-03-18 18:24:16,970 - Navegando a tu perfil...
+2025-03-18 18:24:23,510 - Obteniendo lista de seguidores...
+2025-03-18 18:24:23,510 - Abriendo la lista de 'Seguidores'...
+2025-03-18 18:24:33,902 - Error al abrir 'Seguidores': Message: 
+Stacktrace:
+	GetHandleVerifier [0x0031B5A3+24387]
+	(No symbol) [0x002A5904]
+	(No symbol) [0x00180753]
+	(No symbol) [0x001C8BA9]
+	(No symbol) [0x001C8EFB]
+	(No symbol) [0x002119C2]
+	(No symbol) [0x001ED894]
+	(No symbol) [0x0020F138]
+	(No symbol) [0x001ED646]
+	(No symbol) [0x001BC59F]
+	(No symbol) [0x001BD8E4]
+	GetHandleVerifier [0x0061D883+3179043]
+	GetHandleVerifier [0x00636CF9+3282585]
+	GetHandleVerifier [0x0063167C+3260444]
+	GetHandleVerifier [0x003B4330+650448]
+	(No symbol) [0x002AED0D]
+	(No symbol) [0x002ABAF8]
+	(No symbol) [0x002ABC99]
+	(No symbol) [0x0029E530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+	(No symbol) [0x00000000]
+
+2025-03-18 18:24:44,183 - Error al hacer scroll: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0031B5A3+24387]
+	(No symbol) [0x002A5904]
+	(No symbol) [0x00180753]
+	(No symbol) [0x001C8BA9]
+	(No symbol) [0x001C8EFB]
+	(No symbol) [0x002119C2]
+	(No symbol) [0x001ED894]
+	(No symbol) [0x0020F138]
+	(No symbol) [0x001ED646]
+	(No symbol) [0x001BC59F]
+	(No symbol) [0x001BD8E4]
+	GetHandleVerifier [0x0061D883+3179043]
+	GetHandleVerifier [0x00636CF9+3282585]
+	GetHandleVerifier [0x0063167C+3260444]
+	GetHandleVerifier [0x003B4330+650448]
+	(No symbol) [0x002AED0D]
+	(No symbol) [0x002ABAF8]
+	(No symbol) [0x002ABC99]
+	(No symbol) [0x0029E530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+	(No symbol) [0x00000000]
+
+2025-03-18 18:24:54,650 - Error al obtener usuarios: Message: 
+
+2025-03-18 18:24:54,651 - Obteniendo lista de seguidos...
+2025-03-18 18:24:54,652 - Abriendo la lista de 'Siguiendo'...
+2025-03-18 18:25:04,929 - Error al abrir 'Siguiendo': Message: 
+Stacktrace:
+	GetHandleVerifier [0x0031B5A3+24387]
+	(No symbol) [0x002A5904]
+	(No symbol) [0x00180753]
+	(No symbol) [0x001C8BA9]
+	(No symbol) [0x001C8EFB]
+	(No symbol) [0x002119C2]
+	(No symbol) [0x001ED894]
+	(No symbol) [0x0020F138]
+	(No symbol) [0x001ED646]
+	(No symbol) [0x001BC59F]
+	(No symbol) [0x001BD8E4]
+	GetHandleVerifier [0x0061D883+3179043]
+	GetHandleVerifier [0x00636CF9+3282585]
+	GetHandleVerifier [0x0063167C+3260444]
+	GetHandleVerifier [0x003B4330+650448]
+	(No symbol) [0x002AED0D]
+	(No symbol) [0x002ABAF8]
+	(No symbol) [0x002ABC99]
+	(No symbol) [0x0029E530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+	(No symbol) [0x00000000]
+
+2025-03-18 18:27:54,463 - ====== WebDriver manager ======
+2025-03-18 18:27:55,996 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:27:56,136 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:27:56,206 - Driver [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-18 18:27:57,944 - Abriendo Instagram...
+2025-03-18 18:28:19,539 - Login exitoso!
+2025-03-18 18:28:19,539 - Navegando a tu perfil...
+2025-03-18 18:28:25,991 - Obteniendo lista de seguidores...
+2025-03-18 18:28:25,991 - Abriendo la lista de 'Seguidores'...
+2025-03-18 18:28:35,058 - Error al abrir 'Seguidores': Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=134.0.6998.89)
+Stacktrace:
+	GetHandleVerifier [0x008AB5A3+24387]
+	(No symbol) [0x00835904]
+	(No symbol) [0x00710753]
+	(No symbol) [0x006FFF20]
+	(No symbol) [0x0071E022]
+	(No symbol) [0x0078469F]
+	(No symbol) [0x0079EA19]
+	(No symbol) [0x0077D646]
+	(No symbol) [0x0074C59F]
+	(No symbol) [0x0074D8E4]
+	GetHandleVerifier [0x00BAD883+3179043]
+	GetHandleVerifier [0x00BC6CF9+3282585]
+	GetHandleVerifier [0x00BC167C+3260444]
+	GetHandleVerifier [0x00944330+650448]
+	(No symbol) [0x0083ED0D]
+	(No symbol) [0x0083BAF8]
+	(No symbol) [0x0083BC99]
+	(No symbol) [0x0082E530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+
+2025-03-18 18:28:37,062 - Error al hacer scroll: Message: invalid session id
+Stacktrace:
+	GetHandleVerifier [0x008AB5A3+24387]
+	(No symbol) [0x00835904]
+	(No symbol) [0x007105CE]
+	(No symbol) [0x0074BA28]
+	(No symbol) [0x0077D706]
+	(No symbol) [0x007790D2]
+	(No symbol) [0x00778646]
+	(No symbol) [0x006E3245]
+	(No symbol) [0x006E379E]
+	(No symbol) [0x006E3C1D]
+	GetHandleVerifier [0x00BAD883+3179043]
+	GetHandleVerifier [0x00BC6CF9+3282585]
+	GetHandleVerifier [0x00BC167C+3260444]
+	GetHandleVerifier [0x00944330+650448]
+	(No symbol) [0x0083ED0D]
+	(No symbol) [0x006E2F10]
+	(No symbol) [0x006E2ACA]
+	GetHandleVerifier [0x00C4368C+3792940]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+
+2025-03-18 18:28:37,063 - Error al obtener usuarios: Message: invalid session id
+Stacktrace:
+	GetHandleVerifier [0x008AB5A3+24387]
+	(No symbol) [0x00835904]
+	(No symbol) [0x007105CE]
+	(No symbol) [0x0074BA28]
+	(No symbol) [0x0077D706]
+	(No symbol) [0x007790D2]
+	(No symbol) [0x00778646]
+	(No symbol) [0x006E3245]
+	(No symbol) [0x006E379E]
+	(No symbol) [0x006E3C1D]
+	GetHandleVerifier [0x00BAD883+3179043]
+	GetHandleVerifier [0x00BC6CF9+3282585]
+	GetHandleVerifier [0x00BC167C+3260444]
+	GetHandleVerifier [0x00944330+650448]
+	(No symbol) [0x0083ED0D]
+	(No symbol) [0x006E2F10]
+	(No symbol) [0x006E2ACA]
+	GetHandleVerifier [0x00C4368C+3792940]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+
+2025-03-18 18:28:37,063 - Obteniendo lista de seguidos...
+2025-03-18 18:28:37,063 - Abriendo la lista de 'Siguiendo'...
+2025-03-18 18:28:37,064 - Error al abrir 'Siguiendo': Message: invalid session id
+Stacktrace:
+	GetHandleVerifier [0x008AB5A3+24387]
+	(No symbol) [0x00835904]
+	(No symbol) [0x007105CE]
+	(No symbol) [0x0074BA28]
+	(No symbol) [0x0077D706]
+	(No symbol) [0x007790D2]
+	(No symbol) [0x00778646]
+	(No symbol) [0x006E3245]
+	(No symbol) [0x006E379E]
+	(No symbol) [0x006E3C1D]
+	GetHandleVerifier [0x00BAD883+3179043]
+	GetHandleVerifier [0x00BC6CF9+3282585]
+	GetHandleVerifier [0x00BC167C+3260444]
+	GetHandleVerifier [0x00944330+650448]
+	(No symbol) [0x0083ED0D]
+	(No symbol) [0x006E2F10]
+	(No symbol) [0x006E2ACA]
+	GetHandleVerifier [0x00C4368C+3792940]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+
+2025-03-18 18:28:39,067 - Error al hacer scroll: Message: invalid session id
+Stacktrace:
+	GetHandleVerifier [0x008AB5A3+24387]
+	(No symbol) [0x00835904]
+	(No symbol) [0x007105CE]
+	(No symbol) [0x0074BA28]
+	(No symbol) [0x0077D706]
+	(No symbol) [0x007790D2]
+	(No symbol) [0x00778646]
+	(No symbol) [0x006E3245]
+	(No symbol) [0x006E379E]
+	(No symbol) [0x006E3C1D]
+	GetHandleVerifier [0x00BAD883+3179043]
+	GetHandleVerifier [0x00BC6CF9+3282585]
+	GetHandleVerifier [0x00BC167C+3260444]
+	GetHandleVerifier [0x00944330+650448]
+	(No symbol) [0x0083ED0D]
+	(No symbol) [0x006E2F10]
+	(No symbol) [0x006E2ACA]
+	GetHandleVerifier [0x00C4368C+3792940]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+
+2025-03-18 18:28:39,069 - Error al obtener usuarios: Message: invalid session id
+Stacktrace:
+	GetHandleVerifier [0x008AB5A3+24387]
+	(No symbol) [0x00835904]
+	(No symbol) [0x007105CE]
+	(No symbol) [0x0074BA28]
+	(No symbol) [0x0077D706]
+	(No symbol) [0x007790D2]
+	(No symbol) [0x00778646]
+	(No symbol) [0x006E3245]
+	(No symbol) [0x006E379E]
+	(No symbol) [0x006E3C1D]
+	GetHandleVerifier [0x00BAD883+3179043]
+	GetHandleVerifier [0x00BC6CF9+3282585]
+	GetHandleVerifier [0x00BC167C+3260444]
+	GetHandleVerifier [0x00944330+650448]
+	(No symbol) [0x0083ED0D]
+	(No symbol) [0x006E2F10]
+	(No symbol) [0x006E2ACA]
+	GetHandleVerifier [0x00C4368C+3792940]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+
+2025-03-18 18:28:39,069 - Usuarios que no te siguen: 0
+2025-03-18 18:28:39,069 - No hay usuarios para dejar de seguir.
+2025-03-18 18:28:39,069 - Proceso completado. Cerrando navegador...
+2025-03-18 18:31:02,718 - ====== WebDriver manager ======
+2025-03-18 18:31:04,195 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:31:04,312 - Get LATEST chromedriver version for google-chrome
+2025-03-18 18:31:04,400 - Driver [C:\Users\USUARIO\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-18 18:31:05,938 - Abriendo Instagram...
+2025-03-18 18:31:25,082 - Login exitoso!
+2025-03-18 18:31:25,082 - Navegando a tu perfil...
+2025-03-18 18:31:33,416 - Obteniendo lista de seguidores...
+2025-03-18 18:31:33,416 - Abriendo la lista de 'Seguidores'...
+2025-03-18 18:31:48,914 - Error al abrir 'Seguidores': Message: 
+Stacktrace:
+	GetHandleVerifier [0x0045B5A3+24387]
+	(No symbol) [0x003E5904]
+	(No symbol) [0x002C0753]
+	(No symbol) [0x00308BA9]
+	(No symbol) [0x00308EFB]
+	(No symbol) [0x003519C2]
+	(No symbol) [0x0032D894]
+	(No symbol) [0x0034F138]
+	(No symbol) [0x0032D646]
+	(No symbol) [0x002FC59F]
+	(No symbol) [0x002FD8E4]
+	GetHandleVerifier [0x0075D883+3179043]
+	GetHandleVerifier [0x00776CF9+3282585]
+	GetHandleVerifier [0x0077167C+3260444]
+	GetHandleVerifier [0x004F4330+650448]
+	(No symbol) [0x003EED0D]
+	(No symbol) [0x003EBAF8]
+	(No symbol) [0x003EBC99]
+	(No symbol) [0x003DE530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+
+2025-03-18 18:32:06,037 - Error al hacer scroll: Message: 
+Stacktrace:
+	GetHandleVerifier [0x0045B5A3+24387]
+	(No symbol) [0x003E5904]
+	(No symbol) [0x002C0753]
+	(No symbol) [0x00308BA9]
+	(No symbol) [0x00308EFB]
+	(No symbol) [0x003519C2]
+	(No symbol) [0x0032D894]
+	(No symbol) [0x0034F138]
+	(No symbol) [0x0032D646]
+	(No symbol) [0x002FC59F]
+	(No symbol) [0x002FD8E4]
+	GetHandleVerifier [0x0075D883+3179043]
+	GetHandleVerifier [0x00776CF9+3282585]
+	GetHandleVerifier [0x0077167C+3260444]
+	GetHandleVerifier [0x004F4330+650448]
+	(No symbol) [0x003EED0D]
+	(No symbol) [0x003EBAF8]
+	(No symbol) [0x003EBC99]
+	(No symbol) [0x003DE530]
+	BaseThreadInitThunk [0x76B47BA9+25]
+	RtlInitializeExceptionChain [0x77C1C28B+107]
+	RtlClearBits [0x77C1C20F+191]
+
+2025-03-18 18:32:24,062 - Error al obtener usuarios: Message: 
+
+2025-03-18 18:32:24,063 - Obteniendo lista de seguidos...
+2025-03-18 18:32:24,063 - Abriendo la lista de 'Siguiendo'...
