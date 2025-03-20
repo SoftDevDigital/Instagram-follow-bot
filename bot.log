@@ -1,0 +1,7 @@
+2025-03-13 00:47:18,631 - ====== WebDriver manager ======
+2025-03-13 00:47:19,132 - Get LATEST chromedriver version for google-chrome
+2025-03-13 00:47:19,194 - Get LATEST chromedriver version for google-chrome
+2025-03-13 00:47:19,243 - Driver [C:\Users\alexi\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-13 00:47:20,257 - Abriendo Instagram...
+2025-03-13 00:47:35,922 - Login exitoso!
+2025-03-13 00:47:35,926 - Error al enviar notificación por correo: 'smtp_email'

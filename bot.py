@@ -8,26 +8,31 @@ import time
 import random
 import json
 import logging
+import smtplib
+from email.mime.text import MIMEText
 
 # Configuración de logging
-logging.basicConfig(filename="bot_activity.log", level=logging.INFO, 
-                    format="%(asctime)s - %(message)s")
+logging.basicConfig(filename='bot_activity.log', level=logging.INFO, 
+                    format='%(asctime)s - %(message)s')
 
-# Cargar configuración desde archivo JSON
+# Cargar configuración
 def load_config():
     try:
         with open("config.json", "r") as f:
             return json.load(f)
     except FileNotFoundError:
-        logging.error("Archivo config.json no encontrado. Usa el formato predeterminado.")
+        logging.error("Archivo config.json no encontrado. Usa valores predeterminados.")
         return {
             "email": "martienezsofia21@gmail.com",
             "password": "Onlyghosttruch-02.",
             "target_accounts": ["alexander.ac026", "otra_cuenta_musical"],
-            "max_follows_per_account": 50
+            "max_follows_per_account": 50,
+            "notification_email": "tu_correo@outlook.com",
+            "smtp_email": "tu_correo@outlook.com",
+            "smtp_password": "tu_contraseña_normal"
         }
 
-# Cargar estado del bot
+# Cargar estado
 def load_state():
     try:
         with open("bot_state.json", "r") as f:
@@ -35,12 +40,10 @@ def load_state():
     except FileNotFoundError:
         return {"last_target": "", "followed_count": 0, "unfollowed_count": 0}
 
-# Guardar estado del bot
 def save_state(last_target, followed_count, unfollowed_count):
     with open("bot_state.json", "w") as f:
         json.dump({"last_target": last_target, "followed_count": followed_count, "unfollowed_count": unfollowed_count}, f)
 
-# Generar reporte de estadísticas
 def generate_report(followed, unfollowed):
     with open("report.txt", "w") as f:
         f.write(f"Usuarios seguidos: {followed}\n")
@@ -48,7 +51,27 @@ def generate_report(followed, unfollowed):
         f.write(f"Fecha: {time.ctime()}\n")
     logging.info("Reporte generado en report.txt")
 
-# Configuración del navegador
+# Enviar notificación por correo y detener el bot (usando Outlook SMTP)
+def send_notification_email_and_stop(config, message):
+    try:
+        msg = MIMEText(message)
+        msg['Subject'] = 'Bot de Instagram: Sin usuarios para seguir - Detenido'
+        msg['From'] = config["smtp_email"]
+        msg['To'] = config["notification_email"]
+
+        # Usar el servidor SMTP de Outlook
+        with smtplib.SMTP('smtp-mail.outlook.com', 587) as server:
+            server.starttls()  # Activar TLS
+            server.login(config["smtp_email"], config["smtp_password"])  # Usar contraseña normal
+            server.send_message(msg)
+        logging.info("Notificación enviada por correo. Deteniendo el bot...")
+    except Exception as e:
+        logging.error(f"Error al enviar notificación por correo: {e}")
+    finally:
+        driver.quit()
+        exit()
+
+# Configuración del navegador (local)
 config = load_config()
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
 wait = WebDriverWait(driver, 10)
@@ -128,8 +151,8 @@ def follow_users(max_follows):
             scroll_followers()
             follow_buttons = find_follow_buttons()
             if not follow_buttons:
-                logging.info("No se encontraron más usuarios para seguir.")
-                break
+                logging.info("No se encontraron más usuarios para seguir en esta cuenta.")
+                return followed_count, True
             for button in follow_buttons[:5]:
                 driver.execute_script("arguments[0].click();", button)
                 followed_count += 1
@@ -139,12 +162,12 @@ def follow_users(max_follows):
                 time.sleep(random.uniform(2, 5))
                 if followed_count >= max_follows:
                     logging.info(f"Límite de {max_follows} usuarios alcanzado.")
-                    return
+                    return followed_count, False
             time.sleep(random.uniform(300, 360))
         except Exception as e:
             logging.error(f"Error al seguir usuarios: {e}")
             break
-    return followed_count
+    return followed_count, False
 
 def open_following():
     try:
@@ -177,33 +200,35 @@ def unfollow_users(limit):
     return unfollowed_count
 
 if __name__ == "__main__":
-    # Cargar estado previo
     state = load_state()
     total_followed = state["followed_count"]
     total_unfollowed = state["unfollowed_count"]
+    all_targets_exhausted = True
 
-    # Iniciar sesión
-    login_instagram(config["email"], config["password"])
+    if login_instagram(config["email"], config["password"]):
+        for target in config["target_accounts"]:
+            if target <= state["last_target"]:
+                continue
+            go_to_profile(target)
+            open_followers()
+            followed_in_run, exhausted = follow_users(config["max_follows_per_account"])
+            total_followed += followed_in_run
+            save_state(target, total_followed, total_unfollowed)
+            if not exhausted:
+                all_targets_exhausted = False
 
-    # Seguir usuarios de las cuentas objetivo
-    for target in config["target_accounts"]:
-        if target <= state["last_target"]:  # Saltar cuentas ya procesadas
-            continue
-        go_to_profile(target)
-        open_followers()
-        followed_in_run = follow_users(config["max_follows_per_account"])
-        total_followed += followed_in_run
-        save_state(target, total_followed, total_unfollowed)
+        if all_targets_exhausted and state["last_target"] == config["target_accounts"][-1]:
+            message = "El bot ha procesado todas las cuentas objetivo y no hay más usuarios para seguir.\n" \
+                      "Por favor, actualiza 'target_accounts' en config.json y reinicia el bot."
+            send_notification_email_and_stop(config, message)
 
-    # Opcional: Dejar de seguir (descomentar si lo necesitas)
-    # open_following()
-    # unfollowed_in_run = unfollow_users(limit=10)
-    # total_unfollowed += unfollowed_in_run
-    # save_state(config["target_accounts"][-1], total_followed, total_unfollowed)
+        # Opcional: Dejar de seguir
+        # open_following()
+        # unfollowed_in_run = unfollow_users(limit=10)
+        # total_unfollowed += unfollowed_in_run
+        # save_state(config["target_accounts"][-1], total_followed, total_unfollowed)
 
-    # Generar reporte
     generate_report(total_followed, total_unfollowed)
-
-    # Cerrar navegador
     logging.info("Cerrando el navegador...")
     driver.quit()
+    

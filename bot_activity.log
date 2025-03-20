@@ -126,3 +126,78 @@ Stacktrace:
 2025-03-13 00:27:16,524 - No se encontraron más usuarios para seguir.
 2025-03-13 00:27:16,539 - Reporte generado en report.txt
 2025-03-13 00:27:16,539 - Cerrando el navegador...
+2025-03-13 11:47:56,359 - ====== WebDriver manager ======
+2025-03-13 11:47:56,883 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:47:56,962 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:47:57,030 - Driver [C:\Users\alexi\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-13 11:47:58,147 - Abriendo Instagram...
+2025-03-13 11:48:14,000 - Login exitoso!
+2025-03-13 11:48:14,001 - Navegando al perfil de otra_cuenta_musical...
+2025-03-13 11:48:19,731 - Abriendo la lista de seguidores...
+2025-03-13 11:48:29,820 - Error al abrir seguidores: Message: 
+Stacktrace:
+	GetHandleVerifier [0x00EEB5A3+24387]
+	(No symbol) [0x00E75904]
+	(No symbol) [0x00D50753]
+	(No symbol) [0x00D98BA9]
+	(No symbol) [0x00D98EFB]
+	(No symbol) [0x00DE19C2]
+	(No symbol) [0x00DBD894]
+	(No symbol) [0x00DDF138]
+	(No symbol) [0x00DBD646]
+	(No symbol) [0x00D8C59F]
+	(No symbol) [0x00D8D8E4]
+	GetHandleVerifier [0x011ED883+3179043]
+	GetHandleVerifier [0x01206CF9+3282585]
+	GetHandleVerifier [0x0120167C+3260444]
+	GetHandleVerifier [0x00F84330+650448]
+	(No symbol) [0x00E7ED0D]
+	(No symbol) [0x00E7BAF8]
+	(No symbol) [0x00E7BC99]
+	(No symbol) [0x00E6E530]
+	BaseThreadInitThunk [0x766B5D49+25]
+	RtlInitializeExceptionChain [0x77B0CE3B+107]
+	RtlGetAppContainerNamedObjectPath [0x77B0CDC1+561]
+
+2025-03-13 11:48:39,914 - Error al hacer scroll: Message: 
+Stacktrace:
+	GetHandleVerifier [0x00EEB5A3+24387]
+	(No symbol) [0x00E75904]
+	(No symbol) [0x00D50753]
+	(No symbol) [0x00D98BA9]
+	(No symbol) [0x00D98EFB]
+	(No symbol) [0x00DE19C2]
+	(No symbol) [0x00DBD894]
+	(No symbol) [0x00DDF138]
+	(No symbol) [0x00DBD646]
+	(No symbol) [0x00D8C59F]
+	(No symbol) [0x00D8D8E4]
+	GetHandleVerifier [0x011ED883+3179043]
+	GetHandleVerifier [0x01206CF9+3282585]
+	GetHandleVerifier [0x0120167C+3260444]
+	GetHandleVerifier [0x00F84330+650448]
+	(No symbol) [0x00E7ED0D]
+	(No symbol) [0x00E7BAF8]
+	(No symbol) [0x00E7BC99]
+	(No symbol) [0x00E6E530]
+	BaseThreadInitThunk [0x766B5D49+25]
+	RtlInitializeExceptionChain [0x77B0CE3B+107]
+	RtlGetAppContainerNamedObjectPath [0x77B0CDC1+561]
+
+2025-03-13 11:48:50,004 - No se encontraron más usuarios para seguir en esta cuenta.
+2025-03-13 11:48:50,005 - Reporte generado en report.txt
+2025-03-13 11:48:50,005 - Cerrando el navegador...
+2025-03-13 11:49:14,382 - ====== WebDriver manager ======
+2025-03-13 11:49:14,852 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:49:14,915 - Get LATEST chromedriver version for google-chrome
+2025-03-13 11:49:14,973 - Driver [C:\Users\alexi\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-13 11:49:15,964 - Abriendo Instagram...
+2025-03-13 11:49:31,857 - Login exitoso!
+2025-03-13 11:49:39,655 - Error al enviar notificación por correo: (535, b'5.7.139 Authentication unsuccessful, basic authentication is disabled. [CP6P284CA0080.BRAP284.PROD.OUTLOOK.COM 2025-03-13T14:49:38.586Z 08DD620877D2B170]')
+2025-03-13 12:32:22,987 - ====== WebDriver manager ======
+2025-03-13 12:32:23,480 - Get LATEST chromedriver version for google-chrome
+2025-03-13 12:32:23,538 - Get LATEST chromedriver version for google-chrome
+2025-03-13 12:32:23,597 - Driver [C:\Users\alexi\.wdm\drivers\chromedriver\win64\134.0.6998.88\chromedriver-win32/chromedriver.exe] found in cache
+2025-03-13 12:32:24,566 - Abriendo Instagram...
+2025-03-13 12:32:40,414 - Login exitoso!
+2025-03-13 12:32:47,720 - Error al enviar notificación por correo: (535, b'5.7.139 Authentication unsuccessful, basic authentication is disabled. [SCYP215CA0031.LAMP215.PROD.OUTLOOK.COM 2025-03-13T15:32:47.929Z 08DD61FEEC2B6D98]')

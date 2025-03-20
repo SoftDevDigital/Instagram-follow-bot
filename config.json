@@ -1,6 +1,9 @@
 {
     "email": "martienezsofia21@gmail.com",
     "password": "Onlyghosttruch-02.",
-    "target_accounts": ["alexander.ac026"],
-    "max_follows_per_account": 50
+    "target_accounts": ["alexander.ac026", "otra_cuenta_musical"],
+    "max_follows_per_account": 50,
+    "notification_email": "alexis@laikad.com",
+    "smtp_email": "alexis-correa026@outlook.com",
+    "smtp_password": "1138001012"
 }
