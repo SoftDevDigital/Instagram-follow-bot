@@ -1,141 +1,87 @@
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from webdriver_manager.chrome import ChromeDriverManager
+from instagrapi import Client
 import time
+import random
 
-# Configurar el driver
-options = webdriver.ChromeOptions()
-options.add_argument("--disable-notifications")
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
-wait = WebDriverWait(driver, 10)
-
-# Función para iniciar sesión en Instagram
-def login_instagram(email, password):
-    print("Abriendo Instagram...")
-    driver.get("https://www.instagram.com/accounts/login/")
-    time.sleep(5)
-
-    try:
-        email_field = wait.until(EC.presence_of_element_located((By.NAME, "username")))
-        password_field = driver.find_element(By.NAME, "password")
-        email_field.send_keys(email)
-        password_field.send_keys(password)
-
-        login_button = driver.find_element(By.XPATH, "//button[@type='submit']")
-        login_button.click()
-        time.sleep(10)
-        print("Login exitoso!")
-    except Exception as e:
-        print(f"Error durante el login: {e}")
-        driver.quit()
-        exit()
-
-# Navegar al perfil específico
-def go_to_profile(username):
-    print(f"Navegando al perfil de {username}...")
-    driver.get(f"https://www.instagram.com/{username}/")
-    time.sleep(5)
-
-# Abrir la lista de seguidores o seguidos
-def open_list(tipo):
-    try:
-        print(f"Abriendo la lista de {tipo}...")
-        list_link = wait.until(EC.element_to_be_clickable((By.XPATH, f"//a[contains(@href, '/{tipo}/')]")))
-        list_link.click()
-        time.sleep(5)
-    except Exception as e:
-        print(f"Error al abrir la lista de {tipo}: {e}")
-
-# Obtener lista de seguidores o seguidos
-def obtener_lista(tipo):
-    print(f"Obteniendo la lista de {tipo}...")
-    nombres = set()
-    try:
-        popup = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@role='dialog']//ul")))
-        for _ in range(10):
-            driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight", popup)
-            time.sleep(2)
-        
-        elementos = driver.find_elements(By.XPATH, "//a[contains(@href, '/')]//span")
-        for elem in elementos:
-            nombres.add(elem.text)
-    except Exception as e:
-        print(f"Error al obtener la lista de {tipo}: {e}")
-    return nombres
-
-# Función para encontrar botones "Seguir"
-def find_follow_buttons():
-    try:
-        buttons = wait.until(EC.presence_of_all_elements_located(
-            (By.XPATH, "//button[contains(., 'Seguir') and not(contains(., 'Siguiendo'))]")))
-        return buttons
-    except:
-        return []
-
-# Función para seguir usuarios en lotes de 5
-def follow_users():
-    followed_count = 0
-    while True:
-        try:
-            follow_buttons = find_follow_buttons()
-            if not follow_buttons:
-                print("No se encontraron más usuarios para seguir.")
-                break
-
-            for button in follow_buttons[:5]:
-                driver.execute_script("arguments[0].click();", button)
-                followed_count += 1
-                print(f"Seguido {followed_count} usuarios.")
-                time.sleep(2)
-
-            print("Esperando 2 minutos antes de seguir a más personas...")
-            time.sleep(120)  # Pausa de 2 minutos (120 segundos)
-            break  # Se sigue solo a 5 personas y se detiene
-
-        except Exception as e:
-            print(f"Error al seguir usuarios: {e}")
-            break
-
-# Función para dejar de seguir a quienes no te siguen
-def dejar_de_seguir():
-    go_to_profile("sofiimart20")  # Ir a tu perfil
-    open_list("following")  # Abrir seguidos
-    seguidos = obtener_lista("following")
-
-    open_list("followers")  # Abrir seguidores
-    seguidores = obtener_lista("followers")
-
-    no_me_siguen = seguidos - seguidores
-    print(f"Personas que no te siguen de vuelta: {len(no_me_siguen)}")
-
-    for usuario in no_me_siguen:
-        try:
-            driver.get(f"https://www.instagram.com/{usuario}/")
-            time.sleep(5)
-            boton_dejar_de_seguir = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Siguiendo')]")))
-            boton_dejar_de_seguir.click()
-            time.sleep(2)
-            confirmar = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[contains(text(), 'Dejar de seguir')]")))
-            confirmar.click()
-            print(f"Has dejado de seguir a {usuario}")
-            time.sleep(3)
-        except Exception as e:
-            print(f"Error al dejar de seguir a {usuario}: {e}")
-            continue
-
-# **Ejecución del bot**
+# Configurar el cliente de Instagram
+cl = Client()
 EMAIL = "martienezsofia21@gmail.com"
 PASSWORD = "Onlyghosttruch-02."
 
-login_instagram(EMAIL, PASSWORD)
-go_to_profile("4getprods")
-open_list("followers")
-follow_users()
-dejar_de_seguir()
+# Función para iniciar sesión en Instagram
+def login_instagram(email, password):
+    print("Iniciando sesión en Instagram...")
+    try:
+        cl.login(email, password)
+        print("Login exitoso!")
+    except Exception as e:
+        print(f"Error durante el login: {e}")
+        exit()
 
-# Cerrar el navegador
-print("Cerrando el navegador...")
-driver.quit()
+# Función para seguir usuarios de un perfil objetivo
+def follow_users(target_username, max_follows=5):
+    print(f"Navegando a los seguidores de {target_username}...")
+    try:
+        target_user_id = cl.user_id_from_username(target_username)
+        followers = cl.user_followers(target_user_id, amount=50)  # Obtener hasta 50 seguidores
+
+        followed_count = 0
+        for user_id in followers:
+            if followed_count >= max_follows:
+                break
+            try:
+                cl.user_follow(user_id)
+                username = followers[user_id].username
+                followed_count += 1
+                print(f"Seguido usuario #{followed_count}: {username}")
+                time.sleep(random.uniform(2, 5))  # Pausa aleatoria
+            except Exception as e:
+                print(f"Error al seguir a {followers[user_id].username}: {e}")
+                time.sleep(10)
+
+        if followed_count > 0:
+            print(f"Seguido {followed_count} usuarios. Esperando 2 minutos...")
+            time.sleep(120)  # Pausa de 2 minutos como en el original
+        else:
+            print("No se encontraron usuarios para seguir.")
+    except Exception as e:
+        print(f"Error al obtener seguidores de {target_username}: {e}")
+
+# Función para dejar de seguir a quienes no te siguen
+def dejar_de_seguir(my_username):
+    print("Analizando seguidos y seguidores...")
+    try:
+        my_user_id = cl.user_id_from_username(my_username)
+        
+        # Obtener lista de seguidos
+        following = cl.user_following(my_user_id, amount=0)  # 0 = todos
+        following_usernames = {cl.username_from_user_id(user_id) for user_id in following}
+        print(f"Total de seguidos: {len(following_usernames)}")
+
+        # Obtener lista de seguidores
+        followers = cl.user_followers(my_user_id, amount=0)
+        followers_usernames = {cl.username_from_user_id(user_id) for user_id in followers}
+        print(f"Total de seguidores: {len(followers_usernames)}")
+
+        # Calcular quiénes no te siguen de vuelta
+        no_me_siguen = following_usernames - followers_usernames
+        print(f"Personas que no te siguen de vuelta: {len(no_me_siguen)}")
+
+        # Dejar de seguir
+        for username in no_me_siguen:
+            try:
+                user_id = cl.user_id_from_username(username)
+                cl.user_unfollow(user_id)
+                print(f"Has dejado de seguir a {username}")
+                time.sleep(random.uniform(5, 10))  # Pausa aleatoria para evitar detección
+            except Exception as e:
+                print(f"Error al dejar de seguir a {username}: {e}")
+                time.sleep(10)
+    except Exception as e:
+        print(f"Error al analizar listas: {e}")
+
+# **Ejecución del bot**
+login_instagram(EMAIL, PASSWORD)
+follow_users("4getprods")  # Seguir usuarios de "4getprods"
+dejar_de_seguir("sofiimart20")  # Dejar de seguir desde tu cuenta
+
+print("Bot finalizado.")
