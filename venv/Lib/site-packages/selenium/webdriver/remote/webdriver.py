@@ -14,7 +14,9 @@
 # KIND, either express or implied.  See the License for the
 # specific language governing permissions and limitations
 # under the License.
+
 """The WebDriver implementation."""
+
 import base64
 import contextlib
 import copy
@@ -41,7 +43,11 @@ from selenium.common.exceptions import JavascriptException
 from selenium.common.exceptions import NoSuchCookieException
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.bidi.browser import Browser
+from selenium.webdriver.common.bidi.browsing_context import BrowsingContext
+from selenium.webdriver.common.bidi.network import Network
 from selenium.webdriver.common.bidi.script import Script
+from selenium.webdriver.common.bidi.session import Session
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.options import ArgOptions
 from selenium.webdriver.common.options import BaseOptions
@@ -91,7 +97,7 @@ def _create_caps(caps):
     options object.
 
     Parameters:
-    ----------
+    -----------
     caps : dict
         - A dictionary of capabilities requested by the caller.
     """
@@ -177,7 +183,7 @@ class WebDriver(BaseWebDriver):
     https://www.selenium.dev/documentation/legacy/json_wire_protocol/.
 
     Attributes:
-    ----------
+    -----------
     session_id - String ID of the browser session started and controlled by this WebDriver.
     capabilities - Dictionary of effective capabilities of this browser session as returned
         by the remote server. See https://www.selenium.dev/documentation/legacy/desired_capabilities/
@@ -202,7 +208,7 @@ class WebDriver(BaseWebDriver):
         protocol.
 
         Parameters:
-        ----------
+        -----------
         command_executor : str or remote_connection.RemoteConnection
             - Either a string representing the URL of the remote server or a custom
             remote_connection.RemoteConnection object. Defaults to 'http://127.0.0.1:4444/wd/hub'.
@@ -220,7 +226,11 @@ class WebDriver(BaseWebDriver):
             - Custom client configuration to use. Defaults to None.
         """
 
-        if isinstance(options, list):
+        if options is None:
+            raise TypeError(
+                "missing 1 required keyword-only argument: 'options' (instance of driver `options.Options` class)"
+            )
+        elif isinstance(options, list):
             capabilities = create_matches(options)
             _ignore_local_proxy = False
         else:
@@ -252,6 +262,10 @@ class WebDriver(BaseWebDriver):
 
         self._websocket_connection = None
         self._script = None
+        self._network = None
+        self._browser = None
+        self._bidi_session = None
+        self._browsing_context = None
 
     def __repr__(self):
         return f'<{type(self).__module__}.{type(self).__name__} (session="{self.session_id}")>'
@@ -273,7 +287,7 @@ class WebDriver(BaseWebDriver):
         context. Ensures the original file detector is set afterwards.
 
         Parameters:
-        ----------
+        -----------
         file_detector_class : object
             - Class of the desired file detector. If the class is different
             from the current file_detector, then the class is instantiated with args and kwargs
@@ -333,15 +347,20 @@ class WebDriver(BaseWebDriver):
         """Creates a new session with the desired capabilities.
 
         Parameters:
-        ----------
+        -----------
         capabilities : dict
             - A capabilities dict to start the session with.
         """
 
         caps = _create_caps(capabilities)
-        response = self.execute(Command.NEW_SESSION, caps)["value"]
-        self.session_id = response.get("sessionId")
-        self.caps = response.get("capabilities")
+        try:
+            response = self.execute(Command.NEW_SESSION, caps)["value"]
+            self.session_id = response.get("sessionId")
+            self.caps = response.get("capabilities")
+        except Exception:
+            if hasattr(self, "service") and self.service is not None:
+                self.service.stop()
+            raise
 
     def _wrap_value(self, value):
         if isinstance(value, dict):
@@ -381,7 +400,7 @@ class WebDriver(BaseWebDriver):
         https://chromedevtools.github.io/devtools-protocol/
 
         Parameters:
-        ----------
+        -----------
         cmd : str,
             - Command name
 
@@ -405,7 +424,7 @@ class WebDriver(BaseWebDriver):
         """Sends a command to be executed by a command.CommandExecutor.
 
         Parameters:
-        ----------
+        -----------
         driver_command : str
             - The name of the command to execute as a string.
 
@@ -441,7 +460,7 @@ class WebDriver(BaseWebDriver):
         onload event has fired).
 
         Parameters:
-        ----------
+        -----------
         url : str
             - The URL to be opened by the browser.
             - Must include the protocol (e.g., http://, https://).
@@ -501,7 +520,7 @@ class WebDriver(BaseWebDriver):
         """Synchronously Executes JavaScript in the current window/frame.
 
         Parameters:
-        ----------
+        -----------
         script : str
             - The javascript to execute.
 
@@ -531,7 +550,7 @@ class WebDriver(BaseWebDriver):
         """Asynchronously Executes JavaScript in the current window/frame.
 
         Parameters:
-        ----------
+        -----------
         script : str
             - The javascript to execute.
 
@@ -758,7 +777,7 @@ class WebDriver(BaseWebDriver):
         """Adds a cookie to your current session.
 
         Parameters:
-        ----------
+        -----------
         cookie_dict : dict
             - A dictionary object, with required keys - "name" and "value";
             - Optional keys - "path", "domain", "secure", "httpOnly", "expiry", "sameSite"
@@ -784,7 +803,7 @@ class WebDriver(BaseWebDriver):
         set_script_timeout.
 
         Parameters:
-        ----------
+        -----------
         time_to_wait : float
             - Amount of time to wait (in seconds)
 
@@ -799,7 +818,7 @@ class WebDriver(BaseWebDriver):
         execute_async_script call before throwing an error.
 
         Parameters:
-        ---------
+        -----------
         time_to_wait : float
             - The amount of time to wait (in seconds)
 
@@ -814,13 +833,13 @@ class WebDriver(BaseWebDriver):
         throwing an error.
 
         Parameters:
-         ---------
-         time_to_wait : float
+        -----------
+        time_to_wait : float
              - The amount of time to wait (in seconds)
 
-         Example:
-         --------
-         >>> driver.set_page_load_timeout(30)
+        Example:
+        --------
+        >>> driver.set_page_load_timeout(30)
         """
         try:
             self.execute(Command.SET_TIMEOUTS, {"pageLoad": int(float(time_to_wait) * 1000)})
@@ -865,7 +884,7 @@ class WebDriver(BaseWebDriver):
         """Find an element given a By strategy and locator.
 
         Parameters:
-        ----------
+        -----------
         by : selenium.webdriver.common.by.By
             The locating strategy to use. Default is `By.ID`. Supported values include:
             - By.ID: Locate by element ID.
@@ -901,7 +920,7 @@ class WebDriver(BaseWebDriver):
         """Find elements given a By strategy and locator.
 
         Parameters:
-        ----------
+        -----------
         by : selenium.webdriver.common.by.By
             The locating strategy to use. Default is `By.ID`. Supported values include:
             - By.ID: Locate by element ID.
@@ -916,11 +935,11 @@ class WebDriver(BaseWebDriver):
 
         Example:
         --------
-        element = driver.find_element(By.ID, 'foo')
+        element = driver.find_elements(By.ID, 'foo')
 
         Returns:
         -------
-        WebElement
+        List[WebElement]
             list of `WebElements` matching locator strategy found on the page.
         """
         by, value = self.locator_converter.convert(by, value)
@@ -951,7 +970,7 @@ class WebDriver(BaseWebDriver):
         paths in your filename.
 
         Parameters:
-        ----------
+        -----------
         filename : str
             - The full path you wish to save your screenshot to. This
             - should end with a `.png` extension.
@@ -982,7 +1001,7 @@ class WebDriver(BaseWebDriver):
         paths in your filename.
 
         Parameters:
-        ----------
+        -----------
         filename : str
             - The full path you wish to save your screenshot to. This
             - should end with a `.png` extension.
@@ -1016,7 +1035,7 @@ class WebDriver(BaseWebDriver):
         """Sets the width and height of the current window. (window.resizeTo)
 
         Parameters:
-        ----------
+        -----------
         width : int
             - the width in pixels to set the window to
 
@@ -1124,7 +1143,7 @@ class WebDriver(BaseWebDriver):
         - see UselessFileDetector
 
         Parameters:
-        ----------
+        -----------
         detector : Any
             - The detector to use. Must not be None.
         """
@@ -1149,7 +1168,7 @@ class WebDriver(BaseWebDriver):
         """Sets the current orientation of the device.
 
         Parameters:
-        ----------
+        -----------
         value : str
             - orientation to set it to.
 
@@ -1162,34 +1181,6 @@ class WebDriver(BaseWebDriver):
             self.execute(Command.SET_SCREEN_ORIENTATION, {"orientation": value})
         else:
             raise WebDriverException("You can only set the orientation to 'LANDSCAPE' and 'PORTRAIT'")
-
-    @property
-    def log_types(self):
-        """Gets a list of the available log types. This only works with w3c
-        compliant browsers.
-
-        Example:
-        --------
-        >>> driver.log_types
-        """
-        return self.execute(Command.GET_AVAILABLE_LOG_TYPES)["value"]
-
-    def get_log(self, log_type):
-        """Gets the log for a given log type.
-
-        Parameters:
-        ----------
-        log_type : str
-            - Type of log that which will be returned
-
-        Example:
-        --------
-        >>> driver.get_log('browser')
-        >>> driver.get_log('driver')
-        >>> driver.get_log('client')
-        >>> driver.get_log('server')
-        """
-        return self.execute(Command.GET_LOG, {"type": log_type})["value"]
 
     def start_devtools(self):
         global devtools
@@ -1256,6 +1247,75 @@ class WebDriver(BaseWebDriver):
             raise WebDriverException("Unable to find url to connect to from capabilities")
 
         self._websocket_connection = WebSocketConnection(ws_url)
+
+    @property
+    def network(self):
+        if not self._websocket_connection:
+            self._start_bidi()
+
+        if not hasattr(self, "_network") or self._network is None:
+            self._network = Network(self._websocket_connection)
+
+        return self._network
+
+    @property
+    def browser(self):
+        """Returns a browser module object for BiDi browser commands.
+
+        Returns:
+        --------
+        Browser: an object containing access to BiDi browser commands.
+
+        Examples:
+        ---------
+        >>> user_context = driver.browser.create_user_context()
+        >>> user_contexts = driver.browser.get_user_contexts()
+        >>> client_windows = driver.browser.get_client_windows()
+        >>> driver.browser.remove_user_context(user_context)
+        """
+        if not self._websocket_connection:
+            self._start_bidi()
+
+        if self._browser is None:
+            self._browser = Browser(self._websocket_connection)
+
+        return self._browser
+
+    @property
+    def _session(self):
+        """
+        Returns the BiDi session object for the current WebDriver session.
+        """
+        if not self._websocket_connection:
+            self._start_bidi()
+
+        if self._bidi_session is None:
+            self._bidi_session = Session(self._websocket_connection)
+
+        return self._bidi_session
+
+    @property
+    def browsing_context(self):
+        """Returns a browsing context module object for BiDi browsing context commands.
+
+        Returns:
+        --------
+        BrowsingContext: an object containing access to BiDi browsing context commands.
+
+        Examples:
+        ---------
+        >>> context_id = driver.browsing_context.create(type="tab")
+        >>> driver.browsing_context.navigate(context=context_id, url="https://www.selenium.dev")
+        >>> driver.browsing_context.capture_screenshot(context=context_id)
+        >>> driver.browsing_context.close(context_id)
+        """
+        if not self._websocket_connection:
+            self._start_bidi()
+
+        if self._browsing_context is None:
+            self._browsing_context = BrowsingContext(self._websocket_connection)
+
+        return self._browsing_context
 
     def _get_cdp_details(self):
         import json
@@ -1372,7 +1432,7 @@ class WebDriver(BaseWebDriver):
         verification.
 
         Parameters:
-        ----------
+        -----------
         verified: True if the authenticator will pass user verification, False otherwise.
 
         Example:
@@ -1398,7 +1458,7 @@ class WebDriver(BaseWebDriver):
         directory.
 
         Parameters:
-        ----------
+        -----------
         file_name : str
             - The name of the file to download.
 
@@ -1494,7 +1554,7 @@ class WebDriver(BaseWebDriver):
         """Waits for and returns the FedCM dialog.
 
         Parameters:
-        ----------
+        -----------
         timeout : int
             - How long to wait for the dialog
 
