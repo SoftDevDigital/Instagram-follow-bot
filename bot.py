@@ -22,6 +22,11 @@ MAX_TOTAL_UNFOLLOWS = 50
 UNFOLLOW_WAIT_MIN_SEC = 30
 UNFOLLOW_WAIT_MAX_SEC = 90
 
+# Seguridad: por defecto NO dejar de seguir a quienes nos siguen
+SKIP_IF_FOLLOWS_YOU = True
+# Límite de seguidores a escanear para armar el set (evita scans infinitos)
+MAX_FOLLOWERS_TO_SCAN = 2000
+
 def build_driver():
     options = webdriver.ChromeOptions()
     options.add_argument("--start-maximized")
@@ -119,6 +124,12 @@ def open_following():
     driver.execute_script("arguments[0].click();", link)
     time.sleep(random.uniform(3, 5))
 
+def open_followers():
+    print("Abriendo lista de seguidores...")
+    link = wait.until(EC.element_to_be_clickable((By.XPATH, "//a[contains(@href, '/followers/')]")))
+    driver.execute_script("arguments[0].click();", link)
+    time.sleep(random.uniform(3, 5))
+
 def scroll_following():
     try:
         modal = wait.until(EC.presence_of_element_located((By.XPATH, "//div[@role='dialog']//div[contains(@class, 'xyi19xy')]")))
@@ -127,6 +138,19 @@ def scroll_following():
     
     driver.execute_script("arguments[0].scrollTop = arguments[0].scrollHeight;", modal)
     time.sleep(random.uniform(2, 4))
+
+def close_dialog_if_open():
+    try:
+        driver.find_element(By.XPATH, "//div[@role='dialog']")
+    except Exception:
+        return
+    try:
+        # Cerrar con ESC suele funcionar en los modales de IG
+        body = driver.find_element(By.TAG_NAME, "body")
+        body.send_keys(Keys.ESCAPE)
+        time.sleep(random.uniform(0.8, 1.5))
+    except Exception:
+        pass
 
 def detect_username_from_nav():
     """Intenta obtener el @ desde enlaces del home (barra lateral / inferior)."""
@@ -223,6 +247,58 @@ def get_siguiendo_buttons():
             pass
     return buttons
 
+def username_from_profile_href(href: str) -> str:
+    if not href:
+        return ""
+    href = href.split("?", 1)[0].split("#", 1)[0].rstrip("/")
+    if "instagram.com/" not in href:
+        return ""
+    tail = href.split("instagram.com/", 1)[-1]
+    seg = tail.split("/", 1)[0].strip().lower()
+    if not seg:
+        return ""
+    return seg
+
+def username_for_button(btn):
+    """
+    Intenta obtener el username del item (fila) asociado a un botón Siguiendo.
+    """
+    try:
+        # Buscar el link de perfil dentro del contenedor más cercano
+        a = btn.find_element(By.XPATH, ".//ancestor::div[.//a[contains(@href, 'instagram.com/')]]//a[contains(@href, 'instagram.com/')][1]")
+        return username_from_profile_href(a.get_attribute("href") or "")
+    except Exception:
+        pass
+    try:
+        a = btn.find_element(By.XPATH, ".//ancestor::div[.//a[starts-with(@href, '/')]]//a[starts-with(@href, '/')][1]")
+        return (a.get_attribute("href") or "").strip("/").split("/", 1)[0].lower()
+    except Exception:
+        return ""
+
+def collect_usernames_from_dialog(max_items: int):
+    """
+    Recolecta usernames visibles en el dialog actual (followers/following).
+    Hace scroll hasta max_items o hasta que se estanque.
+    """
+    seen = set()
+    stagnant_rounds = 0
+    while len(seen) < max_items and stagnant_rounds < 5:
+        before = len(seen)
+        for a in driver.find_elements(By.XPATH, "//div[@role='dialog']//a[@href]"):
+            try:
+                href = a.get_attribute("href") or ""
+                u = username_from_profile_href(href)
+                if u:
+                    seen.add(u)
+            except Exception:
+                pass
+        if len(seen) == before:
+            stagnant_rounds += 1
+        else:
+            stagnant_rounds = 0
+        scroll_following()
+    return seen
+
 def confirm_unfollow_dialog():
     """Confirma el menú o modal tras pulsar Siguiendo."""
     time.sleep(random.uniform(0.4, 1.0))
@@ -239,6 +315,17 @@ def confirm_unfollow_dialog():
 
 def run_unfollow_automation():
     total = 0
+
+    followers_set = set()
+    if SKIP_IF_FOLLOWS_YOU:
+        # Construir set de seguidores antes de unfollow
+        open_followers()
+        followers_set = collect_usernames_from_dialog(MAX_FOLLOWERS_TO_SCAN)
+        print(f"Seguidores detectados (para proteger): {len(followers_set)}")
+        close_dialog_if_open()
+        time.sleep(random.uniform(1.0, 2.0))
+        open_following()
+
     while total < MAX_TOTAL_UNFOLLOWS:
         batch_size = random.randint(3, 8)
         print(f"\n--- Tanda unfollow. Objetivo en bloque: {batch_size} ---")
@@ -257,6 +344,13 @@ def run_unfollow_automation():
 
             btn = btns[0]
             try:
+                u = username_for_button(btn)
+                if SKIP_IF_FOLLOWS_YOU and u and (u in followers_set):
+                    print(f"Saltando @{u} (nos sigue).")
+                    # Scroll mínimo para evitar quedarnos en el mismo item
+                    scroll_following()
+                    continue
+
                 driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", btn)
                 time.sleep(random.uniform(0.8, 2.0))
                 driver.execute_script("arguments[0].click();", btn)
@@ -351,10 +445,26 @@ if __name__ == "__main__":
         metavar="N",
         help="Solo unfollow: tope de cuentas (por defecto MAX_TOTAL_UNFOLLOWS en el script).",
     )
+    parser.add_argument(
+        "--no-protect-followers",
+        action="store_true",
+        help="(Peligroso) Permite dejar de seguir incluso a cuentas que nos siguen.",
+    )
+    parser.add_argument(
+        "--followers-scan-max",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Solo unfollow: máximo de seguidores a escanear para proteger (por defecto MAX_FOLLOWERS_TO_SCAN).",
+    )
     args = parser.parse_args()
 
     if args.max_unfollow is not None:
         globals()["MAX_TOTAL_UNFOLLOWS"] = max(1, args.max_unfollow)
+    if args.no_protect_followers:
+        globals()["SKIP_IF_FOLLOWS_YOU"] = False
+    if args.followers_scan_max is not None:
+        globals()["MAX_FOLLOWERS_TO_SCAN"] = max(0, args.followers_scan_max)
 
     try:
         login_instagram()
